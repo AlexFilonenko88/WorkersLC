@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Worker\StoreRequest;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -21,18 +22,29 @@ class WorkerController extends Controller
 
     public function create()
     {
-        $worker = [
-            'name' => 'Mark',
-            'surname' => 'Markov',
-            'email' => 'markov@mail.ru',
-            'age' => '20',
-            'description' => 'Test',
-            'is_married' => false,
-        ];
+//        $worker = [
+//            'name' => 'Mark',
+//            'surname' => 'Markov',
+//            'email' => 'markov@mail.ru',
+//            'age' => '20',
+//            'description' => 'Test',
+//            'is_married' => false,
+//        ];
+//
+//        Worker::create($worker);
 
-        Worker::create($worker);
+        return view('worker.create');
+    }
 
-        return "Ivan was created";
+    public function store(StoreRequest $request)
+    {
+        $data = $request->validated();
+
+        $data["is_married"] = isset($data["is_married"]);
+
+        Worker::create($data);
+
+        return redirect()->route('worker.index');
     }
 
     public function update()

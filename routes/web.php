@@ -24,4 +24,4 @@ Route::get('/workers/{worker}', [WorkerController::class, 'show'])->name('worker
 Route::post('/workers/store', [WorkerController::class, 'store'])->name('worker.store');
 Route::get('/workers/{worker}/edit', [WorkerController::class, 'edit'])->name('worker.edit');
 Route::patch('/workers/{worker}', [App\Http\Controllers\WorkerController::class, 'update'])->name('worker.update');
-//Route::get('/workers/delete', [App\Http\Controllers\WorkerController::class, 'delete'])->name('worker.delete');
+Route::delete('/workers/{worker}', [App\Http\Controllers\WorkerController::class, 'delete'])->name('worker.delete');
